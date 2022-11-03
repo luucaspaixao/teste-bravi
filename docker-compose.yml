@@ -9,11 +9,8 @@ services:
   backend:
     build: ./teste-2-backend
     container_name: nodejs
-    restart: always
     ports:
       - 3333:3333
-    volumes:
-      - ./teste-2-backend:/usr/app
   mysql:
     image: mysql:5.7
     container_name: mysql

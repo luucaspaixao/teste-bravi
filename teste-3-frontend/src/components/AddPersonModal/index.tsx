@@ -55,6 +55,7 @@ const AddPersonModal = (props: AddPersonModalProps) => {
             dispatch({ type: "photo_url", payload: event.target.value })
           }
           placeholder="Coloque a url de uma foto."
+          maxLength={255}
         />
         <Input
           name="name"
@@ -65,6 +66,7 @@ const AddPersonModal = (props: AddPersonModalProps) => {
           }
           placeholder="Digite o nome"
           required
+          maxLength={255}
         />
         <Input
           name="age"
@@ -87,6 +89,7 @@ const AddPersonModal = (props: AddPersonModalProps) => {
             dispatch({ type: "email", payload: event.target.value })
           }
           placeholder="Digite o email"
+          maxLength={255}
           required
         />
         <Input
