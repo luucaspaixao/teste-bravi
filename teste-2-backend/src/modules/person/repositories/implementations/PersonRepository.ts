@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../database";
+import { IUpdateContactsDTO } from "../../dtos/IUpdateContactsDTO";
 import { Person } from "../../entities/Person";
 import { ICreatePersonDTO, IPersonRepository } from "../IPersonRepository";
 
@@ -15,7 +16,6 @@ class PersonRepository implements IPersonRepository {
     age,
     email,
     photo_url,
-    contacts,
     phone,
     whatsapp,
   }: ICreatePersonDTO) {
@@ -24,7 +24,6 @@ class PersonRepository implements IPersonRepository {
       age,
       email,
       photo_url,
-      contacts,
       phone,
       whatsapp,
     });
@@ -34,7 +33,7 @@ class PersonRepository implements IPersonRepository {
     return person;
   }
 
-  async update(body: ICreatePersonDTO, id: string) {
+  async updateContacts(body: IUpdateContactsDTO, id: string) {
     const person = await this.repository.findOne({
       where: {
         id,
@@ -47,6 +46,23 @@ class PersonRepository implements IPersonRepository {
     body.contacts = body.contacts.map((contact) => {
       if (!contact.id) return this.repository.create(contact);
       return contact;
+    });
+
+    Object.assign(person!, body);
+
+    const updatedPerson = await this.repository.save(person!);
+
+    return updatedPerson;
+  }
+
+  async update(body: ICreatePersonDTO, id: string) {
+    const person = await this.repository.findOne({
+      where: {
+        id,
+      },
+      relations: {
+        contacts: true,
+      },
     });
 
     Object.assign(person!, body);

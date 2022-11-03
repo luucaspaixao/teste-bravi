@@ -1,4 +1,4 @@
-interface ICreatePersonDTO {
+interface IUpdateContactsDTO {
   id?: string;
   name: string;
   age: number;
@@ -6,6 +6,7 @@ interface ICreatePersonDTO {
   phone: string;
   whatsapp: string;
   photo_url: string;
+  contacts: IUpdateContactsDTO[];
 }
 
-export { ICreatePersonDTO };
+export { IUpdateContactsDTO };

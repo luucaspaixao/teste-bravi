@@ -9,7 +9,7 @@ class CreatePersonController {
 
     const createdPerson = await this.createPersonUseCase.execute({
       name,
-      contacts,
+      // contacts,
       age,
       email,
       photo_url,
