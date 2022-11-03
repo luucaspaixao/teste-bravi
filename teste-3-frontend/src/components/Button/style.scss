@@ -1,0 +1,10 @@
+.default_button {
+  padding: 0.5rem 1rem;
+  background-color: #016652;
+  border: none;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #00705a;
+  }
+}
