@@ -1,5 +1,4 @@
 import { DataSource } from "typeorm";
-import { Contact } from "../modules/contact/entities/Contact";
 import { Person } from "../modules/person/entities/Person";
 
 const AppDataSource = new DataSource({
@@ -11,7 +10,7 @@ const AppDataSource = new DataSource({
   database: "bravi_db",
   synchronize: true,
   logging: true,
-  entities: [Person, Contact],
+  entities: [Person],
   subscribers: [],
   migrations: [],
 });

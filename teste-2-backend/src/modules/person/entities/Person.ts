@@ -3,12 +3,11 @@ import {
   CreateDateColumn,
   Entity,
   JoinTable,
-  OneToMany,
+  ManyToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Contact } from "../../contact/entities/Contact";
 
 @Entity()
 class Person {
@@ -31,6 +30,12 @@ class Person {
   email: string;
 
   @Column()
+  phone: string;
+
+  @Column()
+  whatsapp: string;
+
+  @Column()
   photo_url: string;
 
   @CreateDateColumn()
@@ -39,11 +44,9 @@ class Person {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => Contact, (contact) => contact.person, {
-    cascade: true,
-  })
+  @ManyToMany((type) => Person)
   @JoinTable()
-  contacts: Contact[];
+  contacts: Person[];
 
   constructor() {
     if (!this.id) {

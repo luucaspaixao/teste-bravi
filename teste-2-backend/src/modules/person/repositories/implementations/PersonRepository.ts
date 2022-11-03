@@ -1,6 +1,5 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../database";
-import { Contact } from "../../../contact/entities/Contact";
 import { Person } from "../../entities/Person";
 import { ICreatePersonDTO, IPersonRepository } from "../IPersonRepository";
 
@@ -11,10 +10,23 @@ class PersonRepository implements IPersonRepository {
     this.repository = AppDataSource.getRepository(Person);
   }
 
-  async create(body: ICreatePersonDTO) {
+  async create({
+    name,
+    age,
+    email,
+    photo_url,
+    contacts,
+    phone,
+    whatsapp,
+  }: ICreatePersonDTO) {
     const person = this.repository.create({
-      name: body.name,
-      contacts: body.contacts,
+      name,
+      age,
+      email,
+      photo_url,
+      contacts,
+      phone,
+      whatsapp,
     });
 
     await this.repository.save(person);
@@ -33,8 +45,7 @@ class PersonRepository implements IPersonRepository {
     });
 
     body.contacts = body.contacts.map((contact) => {
-      if (!contact.id)
-        return AppDataSource.getRepository(Contact).create(contact);
+      if (!contact.id) return this.repository.create(contact);
       return contact;
     });
 

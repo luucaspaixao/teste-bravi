@@ -8,7 +8,6 @@ services:
       - 3000:3000
     volumes: 
       - ./teste-3-frontend:/usr/app
-    # command: tail -f /dev/null
   backend:
     build: ./teste-2-backend
     container_name: nodejs
@@ -25,7 +24,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: bravi_db
-      MYSQL_PASSWORD: bravi
+      MYSQL_PASSWORD: root
     ports:
       - 3306:3306
     volumes:
