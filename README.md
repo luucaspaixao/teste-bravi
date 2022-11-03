@@ -19,6 +19,8 @@ Foi utilizado docker para facilitar as execuções e para banco de dados o MySql
 1. Na pasta raíz do projeto, rodar no terminal "docker-compose up -d"
 2. Pronto, o backend estará rodando na porta 3333, e o frontend na porta 3000.
 
+Obs.: Caso ao entrar na tela do front, ocorra algum erro, é necessário restartar o backend digitando no terminal "docker restart nodejs"
+
 No frontend, no botão "Adicionar pessoas", adiciona-se pessoas que terão lista de contatos.
 Para adicionar um contato, clicar no ícone de contatos ao lado esquerdo do ícone de editar, selecionar no input de select uma pessoa existente,
 e clicar no botão "Adicionar contato".
