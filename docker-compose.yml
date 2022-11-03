@@ -4,10 +4,8 @@ services:
   frontend: 
     build: ./teste-3-frontend
     container_name: react
-    ports: 
+    ports:
       - 3000:3000
-    volumes: 
-      - ./teste-3-frontend:/usr/app
   backend:
     build: ./teste-2-backend
     container_name: nodejs
